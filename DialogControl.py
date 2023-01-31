@@ -148,8 +148,9 @@ class DialogControl:
 
         # Error Handling
         if intents[self.intent] < self.db_handler.getDialogStage():
-            self.textResponse = "You have already provided these data."
-            return
+            if not intents[self.intent] == 0:
+                self.textResponse = "You have already provided these data."
+                return
 
         # Error Handling
         if intents[self.intent] > self.db_handler.getDialogStage():
@@ -220,4 +221,4 @@ class DialogControl:
             self.db_handler.incrementDialogStage()
             self.handleStartAgain()
             return
-
+        
